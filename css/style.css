@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+    --color-bg: #E5E5E5;
+    --color-header-footer: #fff;
+    --color-msg-all: #fff;
+    --color-msg-pvt:  #FFDEDE;
+    --color-msg-exit: #DCDCDC;
+    --max-width: 614px;
+    --width-elements: 100vw;
+}
+
+body {
+    background-color: var(--color-bg);
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    width: var(--width-elements);
+    max-width: var(--max-width);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--color-header-footer);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+header ion-icon {
+    font-size: 40px;
+    padding-right: 25px;
+}
+
+header img {
+    padding-left: 22px;
+    padding-top: 16px;
+    padding-bottom: 11px;
+}
+
+main {
+    width: var(--width-elements);
+    max-width: var(--max-width);
+    height: 100vh;
+
+    position: relative;
+    top: 90px;
+}
+
+article {
+    display: flex;
+    align-items: center;
+    height: auto;
+    margin-bottom: 4px;
+}
+
+.msg-enter-exit {
+    background-color: var(--color-msg-exit);
+}
+
+.msg-all {
+    background-color: var(--color-msg-all);
+}
+
+.msg-pvt {
+    background-color: var(--color-msg-pvt);
+}
+
+span {
+    margin-right: 5px;
+
+    color: #AAAAAA;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+}
+
+p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    word-wrap: break-word;
+    margin-left: 8px;
+}
+
+strong {
+    font-weight: 700;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+footer {
+    width: var(--width-elements);
+    max-width: var(--max-width);
+    height: 80px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--color-header-footer);
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+footer ion-icon {
+    font-size: 26px;
+}
+
+footer input {
+    border: none;
+    color: #000;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 21px;
+    margin-left: 17px;
+    outline: none;
+}
+
+
+footer button {
+    border: none;
+    background-color: #fff;
+    margin-right: 27px;
+}
