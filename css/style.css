@@ -3,10 +3,15 @@
     --color-bg: #E5E5E5;
     --color-header-footer: #fff;
     --color-msg-all: #fff;
-    --color-msg-pvt:  #FFDEDE;
+    --color-msg-pvt: #FFDEDE;
     --color-msg-exit: #DCDCDC;
+    --color-check: #28BB25;
     --max-width: 614px;
     --width-elements: 100vw;
+}
+
+.hidden {
+    display: none;
 }
 
 body {
@@ -48,11 +53,12 @@ header img {
 
 main {
     width: var(--width-elements);
-    max-width: var(--max-width);
-    height: 100vh;
+    max-width: 605px;
+    height: 80vh;
 
     position: relative;
     top: 90px;
+    left: 0;
 }
 
 article {
@@ -76,7 +82,6 @@ article {
 
 span {
     margin-right: 5px;
-
     color: #AAAAAA;
     font-weight: 400;
     font-style: normal;
@@ -135,4 +140,101 @@ footer button {
     border: none;
     background-color: #fff;
     margin-right: 27px;
+}
+
+aside {
+    position: absolute;
+    top:0;
+    bottom:0;
+    left: 0;
+    z-index: 2;
+}
+
+.back-aside {
+    max-width: var(--max-width);
+    width: var(--width-elements);
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    z-index: 2;
+}
+
+.aside {
+    width: 70%;
+    height: 100vh;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    z-index: 3;
+}
+
+.aside-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 84px;
+    
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    font-style: normal;
+
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000;
+
+    margin-bottom: 18px;
+}
+
+.user ion-icon {
+    font-size: 24px;
+    margin-right: 8px;
+    margin-left: 18px;
+}
+
+.check {
+    display: inline;
+    color: var(--color-check);
+    padding-right: 27px;
+}
+
+.check-2 {
+    display: inline;
+    color: var(--color-check);
+    padding-right: 27px;
+}
+
+.icon-and-user {
+    display: flex;
+    align-items: center;
+}
+
+.aside-text-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 66px;
+
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    font-style: normal;
+
+    text-align: center;
+    word-wrap: break-word;
 }
