@@ -124,11 +124,18 @@ header img {
 main {
     width: var(--width-elements);
     max-width: 605px;
-    height: 80vh;
+    height: auto;
+}
 
-    position: relative;
-    top: 90px;
+.container-messages {
+    width: var(--width-elements);
+    max-width: 605px;
+    height: auto;
+
+    position: absolute;
+    top: 87px;
     left: 0;
+    padding-bottom: 83px;
 }
 
 article {

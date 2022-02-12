@@ -1,4 +1,5 @@
-
+let lastMessageLoop;
+let lastMessageArray;
 
 function enterSite() {
     // document.addEventListener("keypress", function(e) {
@@ -21,6 +22,7 @@ function enterSite() {
     promise.catch(deniedEntry);
 
     setInterval(() => checkIfUserOnline(newUser), 5000);
+    getMessages();
     setInterval(getMessages, 3000);
 }
 
@@ -38,11 +40,7 @@ function deniedEntry(error) {
 
 function checkIfUserOnline(User) {
     const promise = axios.post("https://mock-api.driven.com.br/api/v4/uol/status", User);
-    promise.then(isOnline);
     promise.catch(isOffline);
-}
-
-function isOnline(response) {
 }
 
 function isOffline(error) {
@@ -56,11 +54,58 @@ function getMessages() {
     promiseMessage.catch(didntGetMessages);
 }
 
-// PAREI AQUI, DESENVOLVER O RECEBIMENTO DAS MENSAGENS
 function getMessagesOK(response) {
-    console.log(response);
-    // const name = response.data.from;
-    // const time = 
+    const messages = response.data;
+    const containerMessages = document.querySelector(".container-messages");
+    let startMessageCount = 0;
+    lastMessageArray = `${messages[messages.length - 1].from}`;
+
+    if (lastMessageArray !== lastMessageLoop) {
+        containerMessages.innerHTML = "";
+    while(startMessageCount < messages.length) {
+    const from = messages[startMessageCount].from;
+    const to = messages[startMessageCount].to;
+    const text = messages[startMessageCount].text;
+    const type = messages[startMessageCount].type;
+    const time = messages[startMessageCount].time;
+
+        if (type === "status") {
+            containerMessages.innerHTML += `
+            <article class="msg-enter-exit">
+            <p><span>
+                    (${time})
+                </span>
+                <strong>${from}</strong> ${text}
+            </p>
+            </article>
+            `;
+        } else if (type === "message") {
+            containerMessages.innerHTML += `
+            <article class="msg-all">
+            <p><span>
+                    (${time})
+                </span>
+                <strong>${from}</strong> para <strong>Todos</strong>: ${text}
+            </p>
+            </article>
+            `;
+        } else if (type === "private_message") {
+            containerMessages.innerHTML += `
+            <article class="msg-pvt">
+            <p><span>
+                    (${time})
+                </span>
+                <strong>${from}</strong> para <strong>${to}</strong>: ${text}
+            </p>
+            </article>
+            `;
+        }
+        startMessageCount++;
+    }
+    const lastElement = [...document.querySelectorAll("article")];
+    lastMessageLoop = lastElement[messages.length - 1].querySelector("strong").innerText;
+    lastElement[messages.length - 1].scrollIntoView();
+}
 }
 
 function didntGetMessages(error) {
@@ -70,7 +115,6 @@ function didntGetMessages(error) {
 
 function checkAside() {
     const aside = document.querySelector("aside");
-
     aside.classList.remove("hidden");
 }
 
