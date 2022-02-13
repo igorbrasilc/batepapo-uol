@@ -1,5 +1,6 @@
 let lastMessageLoop;
 let lastMessageArray;
+let username;
 
 function enterSite() {
     // document.addEventListener("keypress", function(e) {
@@ -12,7 +13,7 @@ function enterSite() {
     const navText = document.querySelector("nav p");
     navText.innerHTML = "Solicitando entrada ao servidor...";
 
-    const username = document.querySelector("nav input").value;
+    username = document.querySelector("nav input").value;
     const newUser = {
         name: username
     };
@@ -29,6 +30,20 @@ function enterSite() {
 function permittedEntry(response) {   
     const nav = document.querySelector("nav");
     nav.classList.add("hidden");
+    
+    const header = document.querySelector("header");
+    header.innerHTML = `
+    <img src="./img/logo 1.png" alt="Logo Header" />
+        <ion-icon name="people" onclick="checkAside()"></ion-icon>
+    `;
+
+    const footer = document.querySelector("footer");
+    footer.innerHTML = `
+    <input type="text" placeholder="Escreva aqui...">
+    <button>
+    <ion-icon name="send-outline"></ion-icon>
+    </button>
+    `
 }
 
 function deniedEntry(error) {
@@ -60,6 +75,8 @@ function getMessagesOK(response) {
     let startMessageCount = 0;
     lastMessageArray = `${messages[messages.length - 1].from}`;
 
+// checka se o nome da ultima mensagem recebido pelo servidor é o mesmo que o ultimo array gerado, se for, atualiza o feed e scrolla até o final:
+
     if (lastMessageArray !== lastMessageLoop) {
         containerMessages.innerHTML = "";
     while(startMessageCount < messages.length) {
@@ -89,7 +106,7 @@ function getMessagesOK(response) {
             </p>
             </article>
             `;
-        } else if (type === "private_message") {
+        } else if (type === "private_message" && to === username) {
             containerMessages.innerHTML += `
             <article class="msg-pvt">
             <p><span>

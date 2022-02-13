@@ -23,7 +23,6 @@ nav {
     top:0;
     bottom:0;
     left: 0;
-    z-index: 3;
 
     background-color: var(--color-header-footer);
     max-width: var(--max-width);
@@ -70,14 +69,14 @@ nav button {
 }
 
 nav button:hover {
-        cursor: pointer;
+    cursor: pointer;
 }
 
 nav p {
     font-weight: 700;
     font-style: italic;
     margin-top: 70px;
-    color: #cf3c32;
+    color: black;
 }
 
 body {
@@ -122,9 +121,6 @@ header img {
 }
 
 main {
-    width: var(--width-elements);
-    max-width: 605px;
-    height: auto;
 }
 
 .container-messages {
@@ -220,7 +216,7 @@ footer button {
 }
 
 aside {
-    position: absolute;
+    position: fixed;
     top:0;
     bottom:0;
     left: 0;
@@ -232,7 +228,6 @@ aside {
     width: var(--width-elements);
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-
     z-index: 2;
 }
 
@@ -251,7 +246,6 @@ aside {
 
     display: flex;
     flex-direction: column;
-    z-index: 3;
 }
 
 .aside-text {
@@ -267,6 +261,13 @@ aside {
 
     text-align: center;
     word-wrap: break-word;
+}
+
+.usersAll {
+    display: flex;
+    flex-direction: column;
+    max-height: 250px;
+    overflow-y: scroll;
 }
 
 .user {

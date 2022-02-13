@@ -31,58 +31,51 @@
 
     <!-- Aqui vai o header -->
     <header>
-        <img src="./img/logo 1.png" alt="Logo Header" />
-        <ion-icon name="people" onclick="checkAside()"></ion-icon>
+        <!-- inserido dinamicamente -->
     </header>
 
     <!-- Aqui as mensagens -->
     <main>
         <div class="container-messages">
-            
+
         </div>
     </main>
 
     <!-- Aqui vai o footer -->
     <footer>
-        <input type="text" placeholder="Escreva aqui...">
-        <button>
-            <ion-icon name="send-outline"></ion-icon>
-        </button>
+        <!-- inserido dinamicamente -->
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-    <script src="./js/script.js"></script>
 
     <!-- Aqui vai a barra aside -->
     <aside class="hidden">
-            <div class="back-aside" onclick="uncheckAside()">
-            </div>
+            <div class="back-aside" onclick="uncheckAside()"></div>
             <section class="aside">
                 <div class="aside-text">
                     Escolha um contato para enviar mensagem: 
                 </div>
-                <article class="user">
-                    <div class="icon-and-user">
-                        <ion-icon name="people"></ion-icon>
-                        Todos
-                    </div>
-                    <ion-icon name="checkmark" class="check hidden"></ion-icon>
-                </article>
-                <article class="user">
-                    <div class="icon-and-user">
-                        <ion-icon name="person-circle"></ion-icon>
-                        João
-                    </div>
-                    <ion-icon name="checkmark" class=" hidden"></ion-icon>
-                </article>
-                <article class="user">
-                    <div class="icon-and-user">
-                        <ion-icon name="person-circle"></ion-icon>
-                        João
-                    </div>
-                    <ion-icon name="checkmark" class=" hidden"></ion-icon>
-                </article>
+                <div class="usersAll">
+                    <article class="user">
+                        <div class="icon-and-user">
+                            <ion-icon name="people"></ion-icon>
+                            Todos
+                        </div>
+                        <ion-icon name="checkmark" class="check hidden"></ion-icon>
+                    </article>
+                    <article class="user">
+                        <div class="icon-and-user">
+                            <ion-icon name="person-circle"></ion-icon>
+                            João
+                        </div>
+                        <ion-icon name="checkmark" class=" hidden"></ion-icon>
+                    </article>
+                    <article class="user">
+                        <div class="icon-and-user">
+                            <ion-icon name="person-circle"></ion-icon>
+                            João
+                        </div>
+                        <ion-icon name="checkmark" class=" hidden"></ion-icon>
+                    </article>
+                </div>
                 <div class="aside-text-2">
                     Escolha a visibilidade:
                 </div>
@@ -102,6 +95,10 @@
                 </article>
             </section>
     </aside>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
