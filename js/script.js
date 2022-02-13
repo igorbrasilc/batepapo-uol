@@ -1,6 +1,7 @@
-let lastMessageLoop;
-let lastMessageArray;
+let lastMessageLoop = null;
+let lastMessageArray = null;
 let username;
+let startMessageCount;
 
 function enterSite() {
     // document.addEventListener("keypress", function(e) {
@@ -40,10 +41,10 @@ function permittedEntry(response) {
     const footer = document.querySelector("footer");
     footer.innerHTML = `
     <input type="text" placeholder="Escreva aqui...">
-    <button>
+    <button onclick="postMessage()">
     <ion-icon name="send-outline"></ion-icon>
     </button>
-    `
+    `;
 }
 
 function deniedEntry(error) {
@@ -72,12 +73,12 @@ function getMessages() {
 function getMessagesOK(response) {
     const messages = response.data;
     const containerMessages = document.querySelector(".container-messages");
-    let startMessageCount = 0;
+    startMessageCount = 0;
     lastMessageArray = `${messages[messages.length - 1].from}`;
 
 // checka se o nome da ultima mensagem recebido pelo servidor é o mesmo que o ultimo array gerado, se for, atualiza o feed e scrolla até o final:
 
-    if (lastMessageArray !== lastMessageLoop) {
+    if (lastMessageArray !== lastMessageLoop || lastMessageLoop === username) {
         containerMessages.innerHTML = "";
     while(startMessageCount < messages.length) {
     const from = messages[startMessageCount].from;
@@ -119,15 +120,34 @@ function getMessagesOK(response) {
         }
         startMessageCount++;
     }
-    const lastElement = [...document.querySelectorAll("article")];
-    lastMessageLoop = lastElement[messages.length - 1].querySelector("strong").innerText;
-    lastElement[messages.length - 1].scrollIntoView();
+
+    const lastElement = document.querySelector("article:last-child");
+    lastMessageLoop = lastElement.querySelector("strong").innerText;
+    lastElement.scrollIntoView();
 }
 }
 
 function didntGetMessages(error) {
     console.log(error);
     alert("Deu xabu com as mensagens, tente reiniciar");
+}
+
+function postMessage() {
+    const messagePost = document.querySelector("footer input").value;
+    const objectPost = {
+        from: username,
+        to: "Todos",
+        text: messagePost,
+        type: "message"
+    };
+
+    const promise = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", objectPost);
+    promise.then(postMessageOK);
+    promise.catch(didntGetMessages);
+}
+
+function postMessageOK(response) {
+    getMessages();
 }
 
 function checkAside() {

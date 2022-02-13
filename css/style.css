@@ -195,6 +195,15 @@ footer {
 
 footer ion-icon {
     font-size: 26px;
+    color: whitesmoke;
+    background-color: black;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+footer ion-icon:hover {
+    background-color: #6d8e6d;
+    cursor: pointer;
 }
 
 footer input {
