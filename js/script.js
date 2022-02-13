@@ -9,7 +9,7 @@ function enterSite() {
     //         let input = document.querySelector("nav input");
     //         input.click();
     //     }
-    // })
+    // }) não deu certo, mas tentei aplicar
 
     const navText = document.querySelector("nav p");
     navText.innerHTML = "Solicitando entrada ao servidor...";
@@ -103,11 +103,11 @@ function getMessagesOK(response) {
             <p><span>
                     (${time})
                 </span>
-                <strong>${from}</strong> para <strong>Todos</strong>: ${text}
+                <strong>${from}</strong> para <strong>${to}</strong>: ${text}
             </p>
             </article>
             `;
-        } else if (type === "private_message" && to === username) {
+        } else if ((type === "private_message" && to === username) || (type === "private_message" && from === username)) {
             containerMessages.innerHTML += `
             <article class="msg-pvt">
             <p><span>
@@ -133,13 +133,29 @@ function didntGetMessages(error) {
 }
 
 function postMessage() {
-    const messagePost = document.querySelector("footer input").value;
+    const messagePost = document.querySelector("footer input").value; //ok
+    const messageTo = document.querySelector(".usersAll .check").parentNode.querySelector("span").innerHTML; //ok
+
+    const messageVisibility = document.querySelector(".visibility .check").parentNode.querySelector("span").innerHTML;
+
+    console.log(messageVisibility)
+    let messageType;
+
+    if (messageVisibility === "Público") {
+        messageType = "message";
+    } else if (messageVisibility === "Reservadamente") {
+        messageType = "private_message";
+    }
+    console.log(messageType);
+
     const objectPost = {
         from: username,
-        to: "Todos",
+        to: messageTo,
         text: messagePost,
-        type: "message"
+        type: messageType
     };
+
+    console.log(objectPost);
 
     const promise = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", objectPost);
     promise.then(postMessageOK);
@@ -153,9 +169,51 @@ function postMessageOK(response) {
 function checkAside() {
     const aside = document.querySelector("aside");
     aside.classList.remove("hidden");
+
+    const promise = axios.get("https://mock-api.driven.com.br/api/v4/uol/participants");
+    promise.then(showParticipants);
+    promise.catch(() => {
+        alert("Servidor não ta pegando os participantes não...");
+    })
 }
 
 function uncheckAside() {
     const aside = document.querySelector("aside");
     aside.classList.add("hidden");
+}
+
+
+function checkOption(option) {
+    const divPai = option.parentNode;
+    const icon = option.querySelector(".hidden");
+
+    icon.classList.add("check");
+
+    const selected = [...divPai.querySelectorAll(".check")];
+    console.log(selected);
+
+    if (selected.length === 2) {
+        for (let i = 0; i < selected.length; i++) {
+            selected[i].classList.remove("check");
+        }
+        icon.classList.add("check");
+    }
+} 
+
+function showParticipants(response) {
+    const participants = response.data;
+    const users = document.querySelector(".usersAll");
+
+    for (let i = 0; i < participants.length; i++) {
+
+        users.innerHTML += `
+        <article class="user" onclick="checkOption(this)">
+            <div class="icon-and-user">
+                <ion-icon name="person-circle"></ion-icon>
+                <span>${participants[i].name}</span>
+            </div>
+            <ion-icon name="checkmark" class=" hidden"></ion-icon>
+        </article>
+        `;
+    }
 }

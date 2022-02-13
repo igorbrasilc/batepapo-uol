@@ -6,6 +6,7 @@
     --color-msg-pvt: #FFDEDE;
     --color-msg-exit: #DCDCDC;
     --color-check: #28BB25;
+    --color-hover: rgb(132, 41, 8);
     --max-width: 614px;
     --width-elements: 100vw;
 }
@@ -112,6 +113,7 @@ header ion-icon {
 
 header ion-icon:hover {
     cursor: pointer;
+    color: var(--color-hover);
 }
 
 header img {
@@ -153,7 +155,7 @@ article {
     background-color: var(--color-msg-pvt);
 }
 
-span {
+p span {
     margin-right: 5px;
     color: #AAAAAA;
     font-weight: 400;
@@ -202,7 +204,7 @@ footer ion-icon {
 }
 
 footer ion-icon:hover {
-    background-color: #6d8e6d;
+    background-color: var(--color-hover);
     cursor: pointer;
 }
 
@@ -277,6 +279,12 @@ aside {
     flex-direction: column;
     max-height: 250px;
     overflow-y: scroll;
+}
+
+article:hover {
+    cursor: pointer;
+    border-radius: 9px;
+    background-color: var(--color-msg-exit);
 }
 
 .user {

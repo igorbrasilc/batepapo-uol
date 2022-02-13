@@ -54,45 +54,34 @@
                     Escolha um contato para enviar mensagem: 
                 </div>
                 <div class="usersAll">
-                    <article class="user">
+                    <article class="user todos" onclick="checkOption(this)">
                         <div class="icon-and-user">
                             <ion-icon name="people"></ion-icon>
-                            Todos
+                            <span>Todos</span>
                         </div>
-                        <ion-icon name="checkmark" class="check hidden"></ion-icon>
+                            <ion-icon name="checkmark" class=" check hidden"></ion-icon>
                     </article>
-                    <article class="user">
-                        <div class="icon-and-user">
-                            <ion-icon name="person-circle"></ion-icon>
-                            João
-                        </div>
-                        <ion-icon name="checkmark" class=" hidden"></ion-icon>
-                    </article>
-                    <article class="user">
-                        <div class="icon-and-user">
-                            <ion-icon name="person-circle"></ion-icon>
-                            João
-                        </div>
-                        <ion-icon name="checkmark" class=" hidden"></ion-icon>
-                    </article>
+                    <!-- inserido dinamicamente -->
                 </div>
                 <div class="aside-text-2">
                     Escolha a visibilidade:
                 </div>
-                <article class="user privacy">
-                    <div class="icon-and-user">
-                        <ion-icon name="lock-open"></ion-icon>
-                        Público
-                    </div>
-                    <ion-icon name="checkmark" class="check-2 hidden"></ion-icon>
-                </article>
-                <article class="user privacy">
-                    <div class="icon-and-user">
-                        <ion-icon name="lock-closed"></ion-icon>
-                        Reservadamente
-                    </div>
-                    <ion-icon name="checkmark" class=" hidden"></ion-icon>
-                </article>
+                <div class="visibility">
+                    <article class="user all" onclick="checkOption(this)">
+                        <div class="icon-and-user">
+                            <ion-icon name="lock-open"></ion-icon>
+                            <span>Público</span>
+                        </div>
+                        <ion-icon name="checkmark" class="check hidden"></ion-icon>
+                    </article>
+                    <article class="user private" onclick="checkOption(this)">
+                        <div class="icon-and-user">
+                            <ion-icon name="lock-closed"></ion-icon>
+                            <span>Reservadamente</span>
+                        </div>
+                        <ion-icon name="checkmark" class=" hidden"></ion-icon>
+                    </article>
+                </div>
             </section>
     </aside>
 
