@@ -38,6 +38,11 @@ nav img {
     margin-bottom: 94px;
 }
 
+nav img:hover {
+    cursor: pointer;
+    transform:rotateZ(30deg);
+}
+
 nav input {
     text-align: center;
     height: 54px;
@@ -71,6 +76,8 @@ nav button {
 
 nav button:hover {
     cursor: pointer;
+    color: white;
+    background-color: var(--color-hover);
 }
 
 nav p {
@@ -104,8 +111,6 @@ header {
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.1);
 }
 
-
-
 header ion-icon {
     font-size: 40px;
     padding-right: 25px;
@@ -122,7 +127,9 @@ header img {
     padding-bottom: 11px;
 }
 
-main {
+header img:hover {
+    cursor: pointer;
+    transform:rotateZ(30deg);
 }
 
 .container-messages {
@@ -141,6 +148,12 @@ article {
     align-items: center;
     height: auto;
     margin-bottom: 4px;
+}
+
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: wrap;
+    overflow: hidden;
 }
 
 .msg-enter-exit {
@@ -167,8 +180,8 @@ p {
     font-size: 14px;
     font-weight: 400;
     line-height: 16px;
-    word-wrap: break-word;
     margin-left: 8px;
+    word-wrap: break-word;
 }
 
 strong {
@@ -197,10 +210,10 @@ footer {
 
 footer ion-icon {
     font-size: 26px;
-    color: whitesmoke;
+    color: var(--color-header-footer);
     background-color: black;
-    border-radius: 10px;
-    padding: 5px;
+    border-radius: 50%;
+    padding: 10px;
 }
 
 footer ion-icon:hover {
@@ -210,6 +223,7 @@ footer ion-icon:hover {
 
 footer input {
     border: none;
+    width: 70vw;
     color: #000;
     font-size: 18px;
     font-weight: 400;

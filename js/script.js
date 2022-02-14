@@ -40,9 +40,9 @@ function permittedEntry(response) {
 
     const footer = document.querySelector("footer");
     footer.innerHTML = `
-    <input type="text" placeholder="Escreva aqui...">
-    <button onclick="postMessage()">
-    <ion-icon name="send-outline"></ion-icon>
+    <input type="text" placeholder="Escreva aqui..." onfocus="this.placeholder='';">
+    <button onclick="postMessage()" data-identifier="send-message">
+    <ion-icon name="paper-plane-outline"></ion-icon>
     </button>
     `;
 }
@@ -89,7 +89,7 @@ function getMessagesOK(response) {
 
         if (type === "status") {
             containerMessages.innerHTML += `
-            <article class="msg-enter-exit">
+            <article class="msg-enter-exit ellipsis" data-identifier="message">
             <p><span>
                     (${time})
                 </span>
@@ -99,7 +99,7 @@ function getMessagesOK(response) {
             `;
         } else if (type === "message") {
             containerMessages.innerHTML += `
-            <article class="msg-all">
+            <article class="msg-all ellipsis" data-identifier="message">
             <p><span>
                     (${time})
                 </span>
@@ -109,7 +109,7 @@ function getMessagesOK(response) {
             `;
         } else if ((type === "private_message" && to === username) || (type === "private_message" && from === username)) {
             containerMessages.innerHTML += `
-            <article class="msg-pvt">
+            <article class="msg-pvt ellipsis" data-identifier="message">
             <p><span>
                     (${time})
                 </span>
@@ -133,12 +133,10 @@ function didntGetMessages(error) {
 }
 
 function postMessage() {
-    const messagePost = document.querySelector("footer input").value; //ok
-    const messageTo = document.querySelector(".usersAll .check").parentNode.querySelector("span").innerHTML; //ok
+    const messagePost = document.querySelector("footer input").value;
+    const messageTo = document.querySelector(".usersAll .check").parentNode.querySelector("span").innerHTML;
 
     const messageVisibility = document.querySelector(".visibility .check").parentNode.querySelector("span").innerHTML;
-
-    console.log(messageVisibility)
     let messageType;
 
     if (messageVisibility === "Público") {
@@ -146,7 +144,6 @@ function postMessage() {
     } else if (messageVisibility === "Reservadamente") {
         messageType = "private_message";
     }
-    console.log(messageType);
 
     const objectPost = {
         from: username,
@@ -155,14 +152,15 @@ function postMessage() {
         type: messageType
     };
 
-    console.log(objectPost);
-
     const promise = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages", objectPost);
     promise.then(postMessageOK);
-    promise.catch(didntGetMessages);
+    promise.catch(() => {
+        alert("Deu xabu, você digitou alguma mensagem? Se sim, tente reiniciar, se não, digite ô cacildis");
+    });
 }
 
 function postMessageOK(response) {
+    const messagePost = document.querySelector("footer input").value = '';
     getMessages();
 }
 
@@ -207,7 +205,7 @@ function showParticipants(response) {
     for (let i = 0; i < participants.length; i++) {
 
         users.innerHTML += `
-        <article class="user" onclick="checkOption(this)">
+        <article class="user" onclick="checkOption(this)" data-identifier="participant">
             <div class="icon-and-user">
                 <ion-icon name="person-circle"></ion-icon>
                 <span>${participants[i].name}</span>

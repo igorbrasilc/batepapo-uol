@@ -23,8 +23,8 @@
     <!-- Aqui vai a tela de entrada -->
     <nav class="">
         <img src="./img/logo 1.png" alt="Logo Uol Nav"/>
-        <input type="text" placeholder="Digite seu nome">
-        <button onclick="enterSite()">Entrar</button>
+        <input type="text" placeholder="Digite seu nome" onfocus="this.placeholder='';" data-identifier="enter-name">
+        <button onclick="enterSite()" data-identifier="start">Entrar</button>
         <p></p>
     </nav>
 
@@ -54,7 +54,7 @@
                     Escolha um contato para enviar mensagem: 
                 </div>
                 <div class="usersAll">
-                    <article class="user todos" onclick="checkOption(this)">
+                    <article class="user todos" onclick="checkOption(this)" data-identifier="participant">
                         <div class="icon-and-user">
                             <ion-icon name="people"></ion-icon>
                             <span>Todos</span>
@@ -66,7 +66,7 @@
                 <div class="aside-text-2">
                     Escolha a visibilidade:
                 </div>
-                <div class="visibility">
+                <div class="visibility" data-identifier="visibility">
                     <article class="user all" onclick="checkOption(this)">
                         <div class="icon-and-user">
                             <ion-icon name="lock-open"></ion-icon>
